@@ -47,7 +47,13 @@ urlRoutes.get('/:slug', async (req, res) => {
     res.status(404).send('URL was not found')
   }
   else {
-    res.send(result.url)
+    if (req.headers['user-agent'].search('Mozilla/') >= 0) {
+      res.setHeader("Content-Type", "text/html");
+      res.redirect(302, result.url);
+    }
+    else {
+      res.send(result.url);
+    }
   }
 });
 
