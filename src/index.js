@@ -1,5 +1,6 @@
 const express = require("express");
 const nanoid = require("nanoid").nanoid;
+const path = require("path");
 const mongoose = require("mongoose");
 const UrlModel = require("./urlModel.js");
 
@@ -58,6 +59,10 @@ urlRoutes.get('/:slug', async (req, res) => {
 });
 
 app.use("/short", urlRoutes);
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+});
+app.use(express.static('client'));
 
 app.listen(9000, () => {
   console.log("App listening on port 9000");

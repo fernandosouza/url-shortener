@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>URL Shortner Client</h1>
+  <form>
+    <input value="asdfa" />
+    <button type="submit">
+      Short!
+    </button>
+  </form>
+  <p class="response"></p>
+  <script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetch(`/short/new?url=${document.querySelector('input').value}`, {
+        method: 'POST'
+      }).then(res => res.text()).then(res => {
+        document.querySelector('.response').textContent = res;
+      })
+    })
+  </script>
+</body>
+
+</html>
