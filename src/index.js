@@ -4,6 +4,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const UrlModel = require("./urlModel.js");
 
+const PORT = process.env.PORT || 9000
+
 const DB_URL = "mongodb://localhost:27017/db";
 
 mongoose
@@ -64,6 +66,6 @@ app.get("/", (req, res) => {
 });
 app.use(express.static('client'));
 
-app.listen(9000, () => {
-  console.log("App listening on port 9000");
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
 });
